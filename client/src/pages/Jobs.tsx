@@ -27,7 +27,7 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from '../components/ui/dropdown-menu';
-import { Badge } from '../components/ui/badge';
+import { Badge } from "@/components/ui/badge";
 import api from '../services/api';
 
 interface Job {
