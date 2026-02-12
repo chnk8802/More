@@ -1,0 +1,6122 @@
+/*
+ * Author       : chaudharymobilerepairing
+ * Generated on : 12-Feb-2026 11:41:54
+ * Version      : 1.0
+ */
+ application "MRM"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+ 	forms
+	{
+		form Customer
+		{
+			success message = "Customer Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Is_Shopkeeper
+			(
+    			type = checkbox
+				displayname = "Is Shopkeeper"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Daily_Payments1
+		{
+			displayname = "Daily Payments"
+			store data in zc = false
+			success message = ""
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Select_Date
+			(
+    			type = date
+				displayname = "Select Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = large
+			)
+	
+			actions
+			{
+				Search
+				(
+   					type = submit
+   					displayname = "Search"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		form Expense1
+		{
+			displayname = "Expense"
+			store data in zc = false
+			success message = ""
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Expense_Category
+			(
+				type = picklist
+				displayname = "Expense Category"
+				maxchar = 100
+				values = {"Spare Part","Party","Shop Maintenance"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expense_Name
+			(
+    			type = text
+				displayname = "Expense Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amoun
+			(
+				type = decimal
+				displayname = "Amount"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Payment_Method
+			(
+				type = picklist
+				displayname = "Payment Method"
+				maxchar = 100
+				values = {"UPI","Cash","Debit Card/credit Card"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Vendor_Name
+			(
+    			type = text
+				displayname = "Vendor Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Paid_By
+			(
+				type = picklist	
+				displayname = "Paid By"
+				values  = Technician.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name + " " + Phone_Number]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<div><ol><li>A sheet in Zoho Sheet a <b>Template</b> is to be create with name <span class=\"colour\" style=\"color: rgb(255, 0, 0)\"><b>&quot;Expense Sheet Template&quot;</b></span> and a&nbsp;<b>Worksheet </b>named&nbsp;<span class=\"colour\" style=\"color: rgb(255, 51, 51)\"><b>&quot;Expense Data&quot;</b></span>&nbsp;in the <span class=\"colour\" style=\"color: rgb(255, 0, 0)\"><b>&quot;Expense Sheet Template&quot;&nbsp;</b></span>template.<br /></li><li>Put the <b>Embed Code</b> for the published workbook which is created automatically after first entry in the <b><span class=\"colour\" style=\"color: rgb(255, 51, 51)\">Expense Report</span></b> page to see the sheet in Expense Report.<br /></li></ol></div><div><br /></div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		form Item
+		{
+			success message = "Item Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Item_Auto_Number
+			(
+    			type = autonumber
+				displayname = "Item Auto Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Job_ID
+			(
+    			type = text
+				displayname = "Job ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Customer
+			(
+				type = picklist	
+				values  = Customer.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				allow new entries
+				[
+					displayname = "Add New Customer"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Model
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			IMEI
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Problem
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Repairing_Charges
+			(
+				type = decimal
+				displayname = "Repairing Charges"
+				initial value = 0
+    			description
+    			[
+    				type = help_text
+    			 	message = "To be Charged from Customer"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Technician
+			(
+				type = picklist	
+				values  = Technician.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Components
+			(
+				type = list	
+				values = {"Sim","Sim Tray","Battery","Back Panel","Camera"}
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+    			description
+    			[
+    				type = help_text
+    			 	message = "Use for saving Passwords/Patterns and Customer ID (In case of software)"
+    			]
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Remark
+			(
+    			type = textarea
+				height = 100px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Enter Customer ID e.g. Aadhar etc. (In case of software)"
+    			]
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Returned_Amount
+			(
+				type = decimal
+				displayname = "Returned Amount"
+				private = true
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Spare_Part
+			(
+				type = grid
+				displayname = "Spare Part"
+				values  = Spare_Parts.ID
+    			bidirectional = Item
+				viewtype = list
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Section2
+			(
+				type = section
+				displayname = ""
+				visibility = true
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Total_Spare_Parts_Cost
+			(
+				type = decimal
+				displayname = "Total Spare Parts Cost"
+				initial value = 0
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Is_Spare_Part_Cost_Accounted
+			(
+    			type = checkbox
+				displayname = "Is Spare Part Cost Accounted"
+				initial value = false
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Section3
+			(
+				type = section
+				displayname = ""
+				visibility = true
+	 			row = 4
+	 			column = 0   
+				width = medium
+			)
+			Discount
+			(
+				type = decimal
+				initial value = 0
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Total_Received_Amount
+			(
+				type = decimal
+				displayname = "Total Received Amount"
+				initial value = 0
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Balance_Amount
+			(
+				type = decimal
+				displayname = "Balance Amount"
+				initial value = 0
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Payment
+			(
+				type = grid
+				values  = Payment.ID
+    			bidirectional = Item
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Connections
+			(
+				type = section
+				displayname = ""
+				visibility = true
+	 			row = 6
+	 			column = 0   
+				width = medium
+			)
+			Payment_Status
+			(
+				type = radiobuttons
+				displayname = "Payment Status"
+				maxchar = 100
+				values = {"None","Unpaid","Partially Paid","Paid"}
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Received","Repairing","Repaired","Not Repaired","Repaired Picked up","Not Repaired Picked up","Repair Picked Unpaid","Return"}
+			}
+		}
+		form Payment
+		{
+			success message = "Payment Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Item_id
+			(
+				type = picklist	
+				values  = Item.ID
+    			displayformat = [ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Item
+			(
+				type = picklist	
+				values  = Item.ID
+    			bidirectional = Payment
+    			displayformat = [Job_ID + " - " + Model]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Profit
+			(
+				type = decimal
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Received_Amount
+			(
+				type = decimal
+				displayname = " Received Amount"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Spare_Part_Shop
+		{
+			displayname = "Spare Part Shop"
+			success message = "Customer Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Shop_Name
+			(
+    			type = text
+				displayname = "Shop Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Spare_Parts
+		{
+			displayname = "Spare Parts"
+			success message = "Spare Part Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Spare_Part_Name
+			(
+    			type = text
+				displayname = "Spare Part Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Spare_Part_Shop
+			(
+				type = picklist	
+				displayname = "Spare Part Shop"
+				values  = Spare_Part_Shop.ID
+    			displayformat = [Shop_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Spare_Part_Cost
+			(
+				type = decimal
+				displayname = "Spare Part Cost"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Is_Paid
+			(
+    			type = checkbox
+				displayname = "Is Paid"
+				initial value = false
+    			description
+    			[
+    				type = help_text
+    			 	message = "true means the vendor's payment for this Spare part is made"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Connections
+			(
+				type = section
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Item
+			(
+				type = picklist	
+				values  = Item.ID
+    			bidirectional = Spare_Part
+    			displayformat = [Job_ID + " - " + IMEI + " - " + Model]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Technician
+		{
+			success message = "Customer Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		default list All_Items
+		{
+			displayName = "All Items"
+			show all rows from Item    
+			(
+				Model
+				IMEI
+				Components
+				Problem
+				Customer
+				Technician
+				Job_ID as "Job ID"
+				Repairing_Charges as "Repairing Charges"
+				Image
+				Remark
+				Payment_Status as "Payment Status"
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Payment
+				(
+					view = All_Payments
+					field = Payment.Received_Amount + " - " + Payment.Added_Time
+				)
+				Spare_Part as "Spare Part"
+				(
+					view = All_Spare_Parts
+					field = Spare_Part.Spare_Part_Name + " - " + Spare_Part.Spare_Part_Shop + " - " + Spare_Part.Spare_Part_Cost + " - " + Spare_Part.Added_Time
+				)
+				Total_Received_Amount as "Total Received Amount"
+				Discount
+				Balance_Amount as "Balance Amount"
+				Added_Time as "Added Time"
+				Customer.Phone_Number as "Phone"
+				(
+					displayformat = formattednumber 
+					linktodial = enable
+				)
+				Blueprint.Current_Stage as "Current Stage"
+				Added_User as "Added User"
+			)
+		}
+		default list All_Customers
+		{
+			displayName = "All Customers"
+			show all rows from Customer    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Phone_Number as "Phone"
+				(
+					displayformat = plainnumber 
+					linktodial = enable
+				)
+				Is_Shopkeeper as "Is Shopkeeper"
+			)
+		}
+		default list Technician_Report
+		{
+			displayName = "Technician Report"
+			show all rows from Technician    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	 			)
+				Phone_Number as "Phone"
+				ID
+			)
+		}
+		default list All_Spare_Parts
+		{
+			displayName = "All Spare Parts"
+			show all rows from Spare_Parts    
+			(
+				Spare_Part_Name as "Spare Part Name"
+				Spare_Part_Shop as "Spare Part Shop"
+				Spare_Part_Cost as "Spare Part Cost"
+				(
+					display = total	
+				)
+				Item
+				Added_Time as "Added Time"
+				Is_Paid as "Is Paid"
+				custom action "Paid"
+				(
+	  			workflow = spare_part_paid
+				show action in edit record menu = true
+				column header = "Paid"
+				condition = (Is_Paid == false)
+				confirmation before execution
+				(
+					message for individual record = "Are you sure you want to mark this spare part paid?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+			)
+			filters
+			(
+				Spare_Part_Shop
+				"Today"  :  Added_Time is today
+			)
+			conditional formatting
+			(
+				"Paid"
+				{
+				condition = (Is_Paid == true)
+				fields = [Spare_Part_Name, Spare_Part_Shop]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+			)
+		}
+		default list Spare_Part_Shop_Report
+		{
+			displayName = "Spare Part Shop Report"
+			show all rows from Spare_Part_Shop    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	 			)
+				Phone_Number as "Phone"
+				Shop_Name as "Shop Name"
+			)
+		}
+		list Received
+		{
+			displayName = "Received"
+			show all rows from Item  [Blueprint.Current_Stage == "Received"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+				Balance_Amount as "Balance Amount"
+			)
+			conditional formatting
+			(
+				"Received"
+				{
+				condition = (Blueprint.Current_Stage == "Received")
+				fields = [Job_ID]
+				format = "background-color:#8a3dfb;"
+				}
+			)
+		}
+		list Repairing
+		{
+			displayName = "Repairing"
+			show all rows from Item  [Blueprint.Current_Stage == "Repairing"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+			)
+			conditional formatting
+			(
+				"Repairing"
+				{
+				condition = (Blueprint.Current_Stage == "Repairing")
+				fields = [Job_ID]
+				format = "background-color:#bc2ae7;"
+				}
+			)
+		}
+		list Repaired
+		{
+			displayName = "Repaired"
+			show all rows from Item  [Blueprint.Current_Stage == "Repaired"]  
+			(
+				Job_ID as "Job ID"
+				Item_Auto_Number as "Item Auto Number"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+				Balance_Amount as "Balance Amount"
+			)
+			conditional formatting
+			(
+				"Repaired"
+				{
+				condition = (Blueprint.Current_Stage == "Repaired")
+				fields = [Job_ID]
+				format = "background-color:#0abb51;"
+				}
+			)
+		}
+		list Not_Repaired
+		{
+			displayName = "Not Repaired"
+			show all rows from Item  [Blueprint.Current_Stage == "Not Repaired"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+				Balance_Amount as "Balance Amount"
+			)
+			conditional formatting
+			(
+				"Not Repaired"
+				{
+				condition = (Blueprint.Current_Stage == "Not Repaired")
+				fields = [Job_ID]
+				format = "background-color:#ff4c2f;"
+				}
+			)
+		}
+		list Repaired_Picked_up
+		{
+			displayName = "Repaired Picked up"
+			show all rows from Item  [Blueprint.Current_Stage == "Repaired Picked up" || Blueprint.Current_Stage == "Repair Picked Unpaid"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+				Spare_Part.Spare_Part_Name as "Spare Part"
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Discount
+				Total_Received_Amount as "Total Received Amount"
+				Balance_Amount as "Balance Amount"
+				Payment_Status as "Payment Status"
+			)
+			conditional formatting
+			(
+				"Picked up"
+				{
+				condition = (Blueprint.Current_Stage == "Repaired Picked up" || Blueprint.Current_Stage == "Repair Picked Unpaid")
+				fields = [Job_ID]
+				format = "background-color:#286bdc;"
+				}
+			)
+		}
+		list Not_Repaired_Picked_up
+		{
+			displayName = "Not Repaired Picked up"
+			show all rows from Item  [Blueprint.Current_Stage == "Not Repaired Picked up"]  
+			(
+				Job_ID as "Job ID"
+				Item_Auto_Number as "Item Auto Number"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Image
+				Components
+				Remark
+				Balance_Amount as "Balance Amount"
+				Discount
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Payment_Status as "Payment Status"
+			)
+			conditional formatting
+			(
+				"Not Picked up"
+				{
+				condition = (Blueprint.Current_Stage == "Not Picked up")
+				fields = [Job_ID]
+				format = "background-color:#ff0048;"
+				}
+			)
+		}
+		default list All_Payments
+		{
+			displayName = "All Payments"
+			show all rows from Payment    
+			(
+				Received_Amount as " Received Amount"
+				(
+					display = total,average,min,max	
+				)
+				Item
+				Added_Time as "Added Time"
+				Item_id
+				Profit
+			)
+		}
+		list Paid
+		{
+			displayName = "Paid"
+			show all rows from Item  [Payment_Status == "Paid"]  
+			(
+				Item_Auto_Number as "Item Auto Number"
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Components
+				Image
+				Remark
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Discount
+				Total_Received_Amount as "Total Received Amount"
+				Balance_Amount as "Balance Amount"
+				Payment_Status as "Payment Status"
+			)
+		}
+		list Unpaid
+		{
+			displayName = "Unpaid"
+			show all rows from Item  [Payment_Status == "Unpaid"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				(
+					display = total	
+				)
+				Technician
+				Components
+				Image
+				Remark
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Discount
+				(
+					display = total	
+				)
+				Total_Received_Amount as "Total Received Amount"
+				Balance_Amount as "Balance Amount"
+				(
+					display = total	
+				)
+				Payment_Status as "Payment Status"
+				Spare_Part.Spare_Part_Name as "Spare Part"
+				Payment.Item as "Payment"
+			)
+			conditional formatting
+			(
+				"Unpaid"
+				{
+				fields = [Job_ID]
+				format = "background-color:#aa002d;"
+				}
+			)
+		}
+		list Partially_Paid
+		{
+			displayName = "Partially Paid"
+			show all rows from Item  [Payment_Status == "Partially Paid"]  
+			(
+				Job_ID as "Job ID"
+				Customer
+				(
+					view = All_Customers
+				)
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Components
+				Image
+				Remark
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Discount
+				Total_Received_Amount as "Total Received Amount"
+				Balance_Amount as "Balance Amount"
+				(
+					display = total	
+				)
+				Payment_Status as "Payment Status"
+				Spare_Part.Spare_Part_Name as "Spare Part"
+				Payment.Item as "Payment"
+			)
+			group by
+			(
+				Customer ascending
+			)
+			conditional formatting
+			(
+				"Partially Paid"
+				{
+				fields = [Job_ID]
+				format = "background-color:#398ef3;"
+				}
+			)
+		}
+		list Payment_None
+		{
+			displayName = "Payment None"
+			show all rows from Item  [Payment_Status == "None" && Blueprint.Current_Stage == "Not Repaired" || Blueprint.Current_Stage == "Not Repaired Picked up"]  
+			(
+				Item_Auto_Number as "Item Auto Number"
+				Job_ID as "Job ID"
+				Customer
+				Model
+				IMEI
+				Problem
+				Repairing_Charges as "Repairing Charges"
+				Technician
+				Components
+				Image
+				Remark
+				Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+				Discount
+				Total_Received_Amount as "Total Received Amount"
+				Balance_Amount as "Balance Amount"
+				Payment_Status as "Payment Status"
+			)
+		}
+		list Monthly_Payments
+		{
+			displayName = "Monthly Payments"
+			show all rows from Payment  [Added_Time in this month]  
+			(
+				Item_id
+				Item
+				(
+					view = All_Items
+				)
+				Profit
+				(
+					display = total,average	
+				)
+				Received_Amount as " Received Amount"
+				(
+					display = total,average	
+				)
+				Item.Technician
+				Added_Time as "Added Time"
+				(
+					displayformat = dateonly
+				)
+			)
+			filters
+			(
+				Added_Time
+			)
+			group by
+			(
+				Item.Technician ascending
+			)
+			sort by
+			(
+				Added_Time ascending
+			)
+		}
+	}
+	pages
+	{
+		page Dashboard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:10px;padding-top:10px;padding-bottom:10px;padding-left:10px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 2'\n \n\t\n\ttitle = 'Repairing Status'\n\t\n\t\ttitleSize = '28px'\n            boldTitle = 'true'\n\t\ttitleColor = '#262138'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Received'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '5px'\n\tcolor = '#8A3DFB'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Received&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#8A3DFB'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Received'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Received'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 5'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repairing'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '5px'\n\tcolor = '#BC2AE7'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Repairing&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#BC2AE7'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repairing'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Repairing'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repaired'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '5px'\n\tcolor = '#0ABB51'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Repaired&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#0ABB51'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repaired'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Repaired'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Not_Repaired'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '5px'\n\tcolor = '#FF4C2F'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Not Repaired&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FF4C2F'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Not_Repaired'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Not Repaired'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<dsp id='html_snippet3' elementName='HTML Snippet 1'\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage html_snippet3()\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n\t#name_container {\n\t\tdisplay: flex;\n\t\theight: 100%;\n\t\tjustify-content: center;\n\t\talign-items: center;\n\t}\n\th1 {\n\t\tfont-size: 2rem;\n\t\tcolor: #F65828;\n\t\tfont-weight: bolder;\n\t}\n\t&lt;/style&gt;\n\t&lt;div id=&quot;name_container&quot;&gt;\n\t\n&lt;h1&gt;Chaudhay Mobile Website&lt;/h1&gt;\n&lt;/div&gt;\n&lt;%\n\n}%&gt;]]>\n</dsp>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repaired_Picked_up'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#4C7DE8'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Repaired Picked up&quot; || Blueprint.Current_Stage == &quot;Repair Picked Unpaid&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#286BDC'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Repaired_Picked_up'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n\n\n\n\n\n\n\t  value = 'Repaired Picked up'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Not_Repaired_Picked_up'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '5px'\n\tcolor = '#FF0048'\n\tsize = '33px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Blueprint.Current_Stage == &quot;Not Repaired Picked up&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FF0048'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Not_Repaired_Picked_up'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\tbgColor = 'transparent'\n\n\n\n\n\n\n\t  value = 'Not Repaired Picked'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 6'\n \n\t\n\ttitle = 'Payment Status'\n\t\n\t\ttitleSize = '28px'\n            boldTitle = 'true'\n\t\ttitleColor = '#262138'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Payment_None'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#000000'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Payment_Status == &quot;None&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#000000'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Payment_None'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Payment None'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 9'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Unpaid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#AA002D'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Payment_Status == &quot;Unpaid&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#AA002D'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Unpaid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Unpaid'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 7'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Paid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#047B33'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Payment_Status == &quot;Paid&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#047B33'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Paid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Paid'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 8'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\n\t\twidth = '100%'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Partially_Paid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#4C7DE8'\n\tsize = '36px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'Payment_Status == &quot;Partially Paid&quot;'\n\t  value = 'thisapp.Item.ID.count'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr><pr \n\t\t\twidth='fill'\n\t\theight='50px'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#286BDC'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'Partially_Paid'\n\t\ttarget = 'same-window'\n\t\twidth = '100%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '20px'\n\tmarginRight = '20px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '16px'\n\ttype = 'Text'\n\n\n\n\n\n\n\n\t  value = 'Partially Paid'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Expense_Report
+		{
+			displayname = "Expense Report"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<dsp id='html_snippet1' elementName='HTML Snippet'\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage html_snippet1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style=&quot;width:100%; height:100vh;&quot;&gt;\n&lt;iframe width=&quot;100%&quot; height=&quot;90%&quot; style=&quot;border:1px solid #ffffff&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;https://sheet.zohopublic.in/sheet/published/8qrryefae2507957b4d849a03954514cdbec1?mode=embed&quot;&gt;&lt;/iframe&gt;\n&lt;/div&gt;\n&lt;%\n\n}%&gt;]]>\n</dsp>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Technician_Work_Report
+		{
+			displayname = "Technician Work Report"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<widgets elementName='Widget' importedTemplate='true'/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Financial_Report
+		{
+			displayname = "Financial Report"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<widgets elementName='Widget' importedTemplate='true'/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Daily_Payments(string selected_date)
+		{
+			displayname = "Daily Payments"
+			Content="<zml    \t\t\n\t\t\tisPrintEnabled='true'\n\t\t\n\t\t\tbgColor='#F4F4F5'\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<form \n\telementName='Form'\n\n\tappLinkName = 'thisapp'\n\tlinkName = 'Daily_Payments1'\n\theightType = 'custom'\n\theightValue = '180'\n\tsearchString = 'Select_Date=${selected_date}'\n\turlType = 'none'\n\tzc_Header = 'false'\n/> \n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<dsp id='html_snippet' elementName='HTML Snippet'\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\ttoday_date = input.selected_date;\n\tif(today_date != null)\n\t{\n\t\tstart_date = today_date + &quot; 00:00:01&quot;;\n\t\tend_date = today_date + &quot; 23:59:59&quot;;\n\t\tdata = List();\n\t\t// Fetch payments for the date range\n\t\tpayment_list = Payment[Added_Time &gt;= start_date &amp;&amp; Added_Time &lt;= end_date];\n\t\t// Map: customer_id -&gt; (Map: item_id -&gt; List of payments)\n\t\ttechnician_map = Map();\n\t\tfor each  payment in payment_list\n\t\t{\n\t\t\titem = payment.Item;\n\t\t\tprofit = payment.Profit;\n\t\t\tif(item != null)\n\t\t\t{\n\t\t\t\ttechnician = item.Technician;\n\t\t\t\tif(technician != null)\n\t\t\t\t{\n\t\t\t\t\tif(!technician_map.containKey(technician))\n\t\t\t\t\t{\n\t\t\t\t\t\ttechnician_map.put(technician,Map());\n\t\t\t\t\t}\n\t\t\t\t\titem_map = technician_map.get(technician);\n\t\t\t\t\tif(!item_map.containKey(item))\n\t\t\t\t\t{\n\t\t\t\t\t\titem_map.put(item,List());\n\t\t\t\t\t}\n\t\t\t\t\tpayment_list_for_item = item_map.get(item);\n\t\t\t\t\tpayment_list_for_item.add(payment);\n\t\t\t\t\titem_map.put(item,payment_list_for_item);\n\t\t\t\t\t// Update the list back in map\n\t\t\t\t\ttechnician_map.put(technician,item_map);\n\t\t\t\t\t// Update the customer map\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\t// Build final data structure\n\t\ttechnician_ids = technician_map.keys();\n\t\t// List of keys (customer IDs)\n\t\tfor each  tech_id in technician_ids\n\t\t{\n\t\t\ttech_data = Map();\n\t\t\ttechnician_name = Technician[ID == tech_id].Name;\n\t\t\ttech_data.put(&quot;technician&quot;,technician_name);\n\t\t\titem_list = List();\n\t\t\ttotal_received_amount_for_technician = 0;\n\t\t\t// Initialize the total received amount for the customer\n\t\t\titem_map = technician_map.get(tech_id);\n\t\t\titem_ids = item_map.keys();\n\t\t\t// List of item IDs\n\t\t\tfor each  item_id in item_ids\n\t\t\t{\n\t\t\t\ti = Item[ID == item_id];\n\t\t\t\titem_entry = Map();\n\t\t\t\titem_entry.put(&quot;Item&quot;,i.Job_ID);\n\t\t\t\titem_entry.put(&quot;Model&quot;,i.Model);\n\t\t\t\titem_entry.put(&quot;Repairing Charges&quot;,i.Repairing_Charges);\n\t\t\t\titem_entry.put(&quot;Total Spare Parts Cost&quot;,i.Total_Spare_Parts_Cost);\n\t\t\t\titem_entry.put(&quot;Is Spare Part Cost Accounted&quot;,i.Is_Spare_Part_Cost_Accounted);\n\t\t\t\titem_entry.put(&quot;Balance Amount&quot;,i.Balance_Amount);\n\t\t\t\titem_payment_list = List();\n\t\t\t\tfor each  payment in Payment[ID == item_map.get(item_id)]\n\t\t\t\t{\n\t\t\t\t\ttemp = Map();\n\t\t\t\t\ttemp.put(&quot;Received Amount&quot;,payment.Received_Amount);\n\t\t\t\t\ttemp.put(&quot;Profit&quot;,payment.Profit);\n\t\t\t\t\ttemp.put(&quot;Payment Date&quot;,payment.Added_Time);\n\t\t\t\t\titem_payment_list.add(temp);\n\t\t\t\t\ttotal_received_amount_for_technician = total_received_amount_for_technician + payment.Received_Amount;\n\t\t\t\t\t// Add to the customer total\n\t\t\t\t}\n\t\t\t\titem_entry.put(&quot;Payment Details&quot;,item_payment_list);\n\t\t\t\titem_list.add(item_entry);\n\t\t\t}\n\t\t\ttech_data.put(&quot;items&quot;,item_list);\n\t\t\ttech_data.put(&quot;total_received_amount_for_technician&quot;,total_received_amount_for_technician);\n\t\t\t// Store the total for the customer\n\t\t\tdata.add(tech_data);\n\t\t}\n\t\thtml_table = &quot;&lt;table border=&apos;1&apos; cellpadding=&apos;5&apos; cellspacing=&apos;0&apos;&gt;&quot;;\n\t\thtml_table = html_table + &quot;&lt;tr&gt;&lt;th&gt;Technician&lt;/th&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th&gt;Model&lt;/th&gt;&lt;th&gt;Repairing Charges&lt;/th&gt;&lt;th&gt;Total Spare Parts Cost&lt;/th&gt;&lt;th&gt;Balance Amount&lt;/th&gt;&lt;th&gt;Received Amount&lt;/th&gt;&lt;th&gt;Profit&lt;/th&gt;&lt;th&gt;Payment Date&lt;/th&gt;&lt;/tr&gt;&quot;;\n\t\tfor each  technician_data in data\n\t\t{\n\t\t\ttechnician_name = technician_data.get(&quot;technician&quot;);\n\t\t\titems = technician_data.get(&quot;items&quot;);\n\t\t\ttotal_received_amount_for_technician = technician_data.get(&quot;total_received_amount_for_technician&quot;);\n\t\t\ttech_rowspan = 0;\n\t\t\tfor each  item_data in items\n\t\t\t{\n\t\t\t\ttech_rowspan = tech_rowspan + item_data.get(&quot;Payment Details&quot;).size();\n\t\t\t}\n\t\t\ttech_printed = false;\n\t\t\tfor each  item_data in items\n\t\t\t{\n\t\t\t\titem_name = item_data.get(&quot;Item&quot;);\n\t\t\t\titem_model = item_data.get(&quot;Model&quot;);\n\t\t\t\trepairing_charges = item_data.get(&quot;Repairing Charges&quot;);\n\t\t\t\ttotal_spare_parts_cost = item_data.get(&quot;Total Spare Parts Cost&quot;);\n\t\t\t\tis_spare_part_cost_accounted = item_data.get(&quot;Is Spare Part Cost Accounted&quot;);\n\t\t\t\tbalance_amount = item_data.get(&quot;Balance Amount&quot;);\n\t\t\t\tpayment_details = item_data.get(&quot;Payment Details&quot;);\n\t\t\t\titem_rowspan = payment_details.size();\n\t\t\t\titem_printed = false;\n\t\t\t\tfor each  payment in payment_details\n\t\t\t\t{\n\t\t\t\t\treceived_amount = payment.get(&quot;Received Amount&quot;);\n\t\t\t\t\tprofit = payment.get(&quot;Profit&quot;);\n\t\t\t\t\tpayment_date = payment.get(&quot;Payment Date&quot;);\n\t\t\t\t\thtml_table = html_table + &quot;&lt;tr&gt;&quot;;\n\t\t\t\t\tif(!tech_printed)\n\t\t\t\t\t{\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + tech_rowspan.toString() + &quot;&apos;&gt;&quot; + technician_name + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\ttech_printed = true;\n\t\t\t\t\t}\n\t\t\t\t\tif(!item_printed)\n\t\t\t\t\t{\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + item_rowspan.toString() + &quot;&apos;&gt;&quot; + item_name + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + item_rowspan.toString() + &quot;&apos;&gt;&quot; + item_model + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + item_rowspan.toString() + &quot;&apos;&gt;&quot; + repairing_charges.toString() + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + item_rowspan.toString() + &quot;&apos;&gt;&quot; + total_spare_parts_cost.toString() + &quot; &quot; + is_spare_part_cost_accounted.tostring() + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\thtml_table = html_table + &quot;&lt;td rowspan=&apos;&quot; + item_rowspan.toString() + &quot;&apos;&gt;&quot; + balance_amount.toString() + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\t\titem_printed = true;\n\t\t\t\t\t}\n\t\t\t\t\thtml_table = html_table + &quot;&lt;td&gt;&quot; + received_amount.toString() + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\thtml_table = html_table + &quot;&lt;td&gt;&quot; + profit.toString() + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\thtml_table = html_table + &quot;&lt;td&gt;&quot; + payment_date + &quot;&lt;/td&gt;&quot;;\n\t\t\t\t\thtml_table = html_table + &quot;&lt;/tr&gt;&quot;;\n\t\t\t\t}\n\t\t\t}\n\t\t\t// Total received row\n\t\t\thtml_table = html_table + &quot;&lt;tr&gt;&quot;;\n\t\t\thtml_table = html_table + &quot;&lt;td colspan=&apos;6&apos;&gt;&lt;strong&gt;Total Received Amount for &quot; + technician_name + &quot;&lt;/strong&gt;&lt;/td&gt;&quot;;\n\t\t\thtml_table = html_table + &quot;&lt;td colspan=&apos;2&apos;&gt;&lt;strong&gt;&quot; + total_received_amount_for_technician.toString() + &quot;&lt;/strong&gt;&lt;/td&gt;&quot;;\n\t\t\thtml_table = html_table + &quot;&lt;/tr&gt;&quot;;\n\t\t}\n\t\thtml_table = html_table + &quot;&lt;/table&gt;&quot;;\n\t\t// Output the final table\n\t\tinfo html_table;\n\t\t// Or you can assign this HTML to be used elsewhere in your page\n\t}\n\t%&gt;\n&lt;center&gt;&lt;%=html_table%&gt;&lt;/center&gt;\n&lt;%\n\n}%&gt;]]>\n</dsp>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page Job_Search(string job_id)
+		{
+			displayname = "Job Search"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"fluid\",\"style\":\"padding-right:10px;padding-top:10px;padding-bottom:10px;padding-left:10px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<widgets elementName='Widget' importedTemplate='true'/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page TIS
+		{
+			displayname = "TIS"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<widgets elementName='Widget' importedTemplate='true'/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+		page RM_Dashboard
+		{
+			displayname = "RM Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<dsp id='html_snippet2' elementName='HTML Snippet'\n bgColor=\"#FFFFFF\" \n>\n\t<![CDATA[htmlpage html_snippet2()\ncontent\n&lt;%{\n\t// Fetching counts dynamically with Added_User criteria for personalized view\n\treceived_count = Item[Blueprint.Current_Stage == &quot;Received&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\trepairing_count = Item[Blueprint.Current_Stage == &quot;Repairing&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\trepaired_count = Item[Blueprint.Current_Stage == &quot;Repaired&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\tnot_repaired_count = Item[Blueprint.Current_Stage == &quot;Not Repaired&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\t// Combining specific pick-up stages\n\trepaired_picked_count = Item[Blueprint.Current_Stage == &quot;Repaired Picked up&quot; || Blueprint.Current_Stage == &quot;Repair Picked Unpaid&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\tnot_repaired_picked_count = Item[Blueprint.Current_Stage == &quot;Not Repaired Picked up&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\t// Financial counts with Added_User criteria\n\tpaid_count = Item[Payment_Status == &quot;Paid&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\tunpaid_count = Item[Payment_Status == &quot;Unpaid&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\tpartially_paid_count = Item[Payment_Status == &quot;Partially Paid&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\tnone_paid_count = Item[Payment_Status == &quot;Payment None&quot; || Payment_Status == &quot;&quot; &amp;&amp; Added_User == zoho.loginuser].count();\n\t%&gt;\n&lt;div class=&quot;dashboard-shell&quot;&gt;\n    &lt;div class=&quot;header-section&quot;&gt;\n        &lt;div class=&quot;title-group&quot;&gt;\n            &lt;span class=&quot;badge&quot;&gt;User Session: &lt;%=zoho.loginuser%&gt;&lt;/span&gt;\n            &lt;h1&gt;My Service Desk&lt;/h1&gt;\n        &lt;/div&gt;\n    &lt;/div&gt;\n\n    &lt;div class=&quot;grid-container&quot;&gt;\n        &lt;h2 class=&quot;section-title&quot;&gt;Service Operations&lt;/h2&gt;\n\n        &lt;a href=&quot;#Report:Received&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line indigo&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Active&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=received_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Received&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Repairing&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line purple&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;In Progress&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=repairing_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Repairing&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Repaired&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line green&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Ready&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=repaired_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Repaired&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Not_Repaired&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line amber&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Action Required&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=not_repaired_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Not Repaired&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n        \n        &lt;a href=&quot;#Report:Repaired_Picked_up&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line blue&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Archived&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=repaired_picked_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Repaired Picked up&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n        \n        &lt;a href=&quot;#Report:Not_Repaired_Picked_up&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line red&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Closed&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=not_repaired_picked_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Not Repaired Picked up&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Browse details \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;h2 class=&quot;section-title&quot;&gt;Financial Overview&lt;/h2&gt;\n\n        &lt;a href=&quot;#Report:Paid&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line green&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Financial&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=paid_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Paid&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;View transactions \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Unpaid&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line red&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Financial&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=unpaid_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Unpaid&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;View aging report \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Partially_Paid&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line blue&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Financial&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=partially_paid_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Partially Paid&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Check balances \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n\n        &lt;a href=&quot;#Report:Payment_None&quot; class=&quot;modern-card&quot;&gt;\n            &lt;div class=&quot;accent-line slate&quot;&gt;&lt;/div&gt;\n            &lt;div class=&quot;card-body&quot;&gt;\n                &lt;span class=&quot;status-pill&quot;&gt;Financial&lt;/span&gt;\n                &lt;div class=&quot;card-main&quot;&gt;\n                    &lt;span class=&quot;card-count&quot;&gt;&lt;%=none_paid_count%&gt;&lt;/span&gt;\n                    &lt;span class=&quot;card-label&quot;&gt;Payment None&lt;/span&gt;\n                &lt;/div&gt;\n                &lt;div class=&quot;card-footer&quot;&gt;Verify records \u2192&lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/a&gt;\n    &lt;/div&gt;\n&lt;/div&gt;\n\n&lt;style&gt;\n/* Existing CSS remains the same as previous version */\n.dashboard-shell { padding: 30px; background-color: #f8fafc; font-family: &apos;Segoe UI&apos;, Roboto, sans-serif; color: #1e293b; }\n.header-section { margin-bottom: 32px; }\n.badge { background: #e2e8f0; padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; }\n.header-section h1 { margin: 10px 0 0 0; font-size: 28px; font-weight: 800; }\n.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }\n.section-title { grid-column: 1 / -1; margin-top: 30px; margin-bottom: 10px; font-size: 14px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }\n.modern-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none; display: flex; flex-direction: column; transition: all 0.2s ease; position: relative; overflow: hidden; }\n.accent-line { height: 4px; width: 100%; }\n.indigo { background: #6366f1; }\n.purple { background: #a855f7; }\n.green { background: #10b981; }\n.amber { background: #f59e0b; }\n.blue { background: #3b82f6; }\n.red { background: #ef4444; }\n.slate { background: #64748b; }\n.card-body { padding: 24px; display: flex; flex-direction: column; }\n.status-pill { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; }\n.card-main { display: flex; align-items: baseline; gap: 12px; }\n.card-count { font-size: 36px; font-weight: 700; color: #0f172a; }\n.card-label { font-size: 14px; font-weight: 500; color: #64748b; }\n.card-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid #f1f5f9; font-size: 13px; font-weight: 600; color: #334155; }\n.modern-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border-color: #cbd5e1; }\n.modern-card:hover .card-footer { color: #6366f1; }\n@media (max-width: 600px) { .grid-container { grid-template-columns: 1fr; } }\n&lt;/style&gt;\n&lt;%\n\n}%&gt;]]>\n</dsp>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+		 functions
+		 {
+			 Deluge
+			 {
+				 list reporting.generate_payment_data(string today_date)
+                 {
+                 	start_date = today_date + " 00:00:01";
+                 	end_date = today_date + " 23:59:59";
+                 	data = List();
+                 	// Final return list
+                 	// Fetch payments for the date range
+                 	payment_list = Payment[Added_Time >= start_date && Added_Time <= end_date];
+                 	// Map: customer_id -> (Map: item_id -> List of payments)
+                 	customer_map = Map();
+                 	for each  payment in payment_list
+                 	{
+                 		item = payment.Item;
+                 		if(item != null)
+                 		{
+                 			customer = item.Customer;
+                 			if(customer != null)
+                 			{
+                 				if(!customer_map.containKey(customer))
+                 				{
+                 					customer_map.put(customer,Map());
+                 				}
+                 				item_map = customer_map.get(customer);
+                 				if(!item_map.containKey(item))
+                 				{
+                 					item_map.put(item,List());
+                 				}
+                 				payment_list_for_item = item_map.get(item);
+                 				payment_list_for_item.add(payment);
+                 				item_map.put(item,payment_list_for_item);
+                 				// Update the list back in map
+                 				customer_map.put(customer,item_map);
+                 				// Update the customer map
+                 			}
+                 		}
+                 	}
+                 	// Build final data structure
+                 	customer_ids = customer_map.keys();
+                 	// List of keys (customer IDs)
+                 	for each  cust_id in customer_ids
+                 	{
+                 		cust_data = Map();
+                 		customer_name = Customer[ID == cust_id].Name;
+                 		cust_data.put("customer",customer_name);
+                 		item_list = List();
+                 		item_map = customer_map.get(cust_id);
+                 		item_ids = item_map.keys();
+                 		// List of item IDs
+                 		for each  item_id in item_ids
+                 		{
+                 			i = Item[ID == item_id];
+                 			item_entry = Map();
+                 			item_entry.put("Item",i.Job_ID);
+                 			item_entry.put("Balance Amount",i.Balance_Amount);
+                 			item_payment_list = List();
+                 			for each  payment in Payment[ID == item_map.get(item_id)]
+                 			{
+                 				temp = Map();
+                 				temp.put("Received Amount",payment.Received_Amount);
+                 				temp.put("Payment Date",payment.Added_Time);
+                 				item_payment_list.add(temp);
+                 			}
+                 			item_entry.put("Payment Details",item_payment_list);
+                 			item_list.add(item_entry);
+                 		}
+                 		cust_data.put("items",item_list);
+                 		data.add(cust_data);
+                 	}
+                 	return data;
+                 }
+				 void Utils.delete_related_spare_parts_and_payments(String item_id)
+                 {
+                 	delete from Payment[Item == item_id.toNumber()];
+                 	delete from Spare_Parts[Item == item_id.toNumber()];
+                 }
+				 string Utils.generateModuleId(String module_string, String auto_number)
+                 {
+                 	// 	module_id = module_string + "-" + today.toString("ddMMYYYY") + "-" + auto_number;
+                 	module_id = module_string + "-" + auto_number;
+                 	return module_id;
+                 }
+			 }
+		 }
+		workflow
+		{
+		form
+		{
+			Create_Job_ID as "Create Job ID"
+			{
+				type =  form
+				form = Item
+
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Job_ID = thisapp.Utils.generateModuleId("REP",input.Item_Auto_Number.toString());
+						)
+					}
+				}
+
+			}
+			update_Total_Spare_Parts_ as "update Total Spare Parts Cost"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on user input of Spare_Part.Spare_Part_Cost
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_spare_parts_cost = 0;
+										for each  spare_part in input.Spare_Part
+										{
+											if(spare_part.Spare_Part_Cost == null)
+											{
+												spare_part.Spare_Part_Cost=0;
+											}
+											total_spare_parts_cost = total_spare_parts_cost + spare_part.Spare_Part_Cost;
+										}
+										input.Total_Spare_Parts_Cost = total_spare_parts_cost;
+						)
+					}
+				}
+
+			}
+			update_Total_Spare_Parts_1 as "update Total Spare Parts Cost"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on delete row of Spare_Part
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_spare_parts_cost = 0;
+										for each  spare_part in input.Spare_Part
+										{
+											if(spare_part.Spare_Part_Cost == null)
+											{
+												spare_part.Spare_Part_Cost=0;
+											}
+											total_spare_parts_cost = total_spare_parts_cost + spare_part.Spare_Part_Cost;
+										}
+										input.Total_Spare_Parts_Cost = total_spare_parts_cost;
+						)
+					}
+				}
+
+			}
+			update_Total_Spare_Parts_2 as "update Total Spare Parts Cost"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_spare_parts_cost = 0;
+										for each  spare_part in input.Spare_Part
+										{
+											if(spare_part.Spare_Part_Cost == null)
+											{
+												spare_part.Spare_Part_Cost=0;
+											}
+											total_spare_parts_cost = total_spare_parts_cost + spare_part.Spare_Part_Cost;
+										}
+										input.Total_Spare_Parts_Cost = total_spare_parts_cost;
+						)
+					}
+				}
+
+			}
+			hide_show_fields3 as "hide/show fields"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Total_Spare_Parts_Cost;
+										disable Total_Received_Amount;
+										disable Balance_Amount;
+										hide Job_ID;
+										hide Connections;
+										hide Spare_Part;
+										hide Spare_Part.Is_Paid;
+										hide Section2;
+										hide Section3;
+										hide Payment;
+										disable Payment.Received_Amount;
+										hide Is_Spare_Part_Cost_Accounted;
+										if(Blueprint.Current_Stage != "Received")
+										{
+											hide Technician;
+										}
+										blueprint_stage_list = {"Repairing","Repaired","Not Repaired","Repair Picked Unpaid","Repaired Picked up","Not Repaired Picked up"};
+										if(blueprint_stage_list.contains(input.Blueprint.Current_Stage))
+										{
+											show Spare_Part;
+											show Section2;
+											if(Blueprint.Current_Stage != "Repairing")
+											{
+												disable Spare_Part.Spare_Part_Shop;
+												disable Spare_Part.Spare_Part_Name;
+												disable Spare_Part.Item;
+												disable Spare_Part.Spare_Part_Cost;
+												disable Section2;
+											}
+											if(zoho.loginuserid == zoho.adminuserid || Blueprint.Current_Stage == "Repaired")
+											{
+												enable Spare_Part.Spare_Part_Shop;
+												enable Spare_Part.Spare_Part_Name;
+												enable Spare_Part.Item;
+												enable Spare_Part.Spare_Part_Cost;
+												enable Section2;
+											}
+											if(zoho.loginuserid != zoho.adminuserid)
+											{
+												disable Customer;
+												disable Model;
+												disable IMEI;
+												disable Problem;
+												disable Repairing_Charges;
+												disable Technician;
+												disable Components;
+												disable Image;
+												disable Remark;
+											}
+											if(Blueprint.Current_Stage == "Repaired" || Blueprint.Current_Stage == "Repaired Picked up" || Blueprint.Current_Stage == "Repair Picked Unpaid")
+											{
+												show Section3;
+											}
+										}
+										if(input.Payment_Status == "Paid")
+										{
+											disable Discount;
+										}
+						)
+					}
+				}
+
+			}
+			create_data_in_sheets as "create data in sheets"
+			{
+				type =  form
+				form = Expense1
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						BASE_URL = "https://sheet.zoho.in/api/v2/";
+										TRAGET_TEMPLATE_NAME = "Expense Sheet Template";
+										TRAGET_WORKBOOK_NAME = "Daily Internal Expense";
+										TRAGET_WORKSHEET_NAME = "Expense Data";
+										template_resource_id = "";
+										workbook_resouce_id = "";
+										/*GET TEMPLATE*/
+										paramMap = Map();
+										paramMap.put('method','template.list');
+										get_all_templates = invokeurl
+										[
+											url :BASE_URL + "templates"
+											type :POST
+											parameters:paramMap
+											connection:"zoho_sheet_connection"
+										];
+										if(get_all_templates.containKey("status") && get_all_templates.get("status") == "success")
+										{
+											templates = get_all_templates.get("templates");
+											for each  template in templates
+											{
+												template_name = template.get("template_name");
+												if(template_name == TRAGET_TEMPLATE_NAME)
+												{
+													template_resource_id = template.get("resource_id");
+												}
+											}
+										}
+										if(template_resource_id != "")
+										{
+											/*GET WORKBOOK*/
+											paramMap = Map();
+											paramMap.put('method','workbook.list');
+											paramMap.put('start_index',1);
+											paramMap.put('count',10);
+											paramMap.put('sort_option','recently_modified');
+											get_all_workbooks = invokeurl
+											[
+												url :BASE_URL + "workbooks"
+												type :POST
+												parameters:paramMap
+												connection:"zoho_sheet_connection"
+											];
+											if(get_all_workbooks.containKey("status") && get_all_workbooks.get("status") == "success")
+											{
+												workbooks = get_all_workbooks.get("workbooks");
+												for each  workbook in workbooks
+												{
+													workbook_name = workbook.get("workbook_name");
+													if(workbook_name == TRAGET_WORKBOOK_NAME)
+													{
+														workbook_resouce_id = workbook.get("resource_id");
+													}
+												}
+											}
+											// Only create new workbook if not already found
+											if(workbook_resouce_id == "")
+											{
+												paramMap = Map();
+												paramMap.put('method','workbook.createfromtemplate');
+												paramMap.put('resource_id',template_resource_id);
+												paramMap.put('workbook_name',TRAGET_WORKBOOK_NAME);
+												create_workbook_from_template = invokeurl
+												[
+													url :BASE_URL + "createfromtemplate"
+													type :POST
+													parameters:paramMap
+													connection:"zoho_sheet_connection"
+												];
+												info create_workbook_from_template;
+												// update workbook_resouce_id from response
+												if(create_workbook_from_template.containKey("status") && create_workbook_from_template.get("status") == "success")
+												{
+													workbook_resouce_id = create_workbook_from_template.get("status");
+												}
+											}
+										}
+										if(workbook_resouce_id != "")
+										{
+											/*GET WORKSHEET*/
+											paramMap = Map();
+											paramMap.put('method','worksheet.list');
+											list_all_worksheets = invokeurl
+											[
+												url :BASE_URL + workbook_resouce_id
+												type :POST
+												parameters:paramMap
+												connection:"zoho_sheet_connection"
+											];
+											if(list_all_worksheets.containKey("status") && list_all_worksheets.get("status") == "success")
+											{
+												worksheets = list_all_worksheets.get("worksheet_names");
+												/*--------------------------------Add data--------------------------------*/
+												paramMap = Map();
+												paramMap.put('method','worksheet.records.add');
+												paramMap.put('worksheet_name',TRAGET_WORKSHEET_NAME);
+												paramMap.put('header_row',1);
+												dataList = List();
+												dataMap = Map();
+												dataMap.put('Expense Category',input.Expense_Category);
+												dataMap.put('Expense Name',input.Expense_Name);
+												dataMap.put('Amount',input.Amoun);
+												dataMap.put('Payment Method',input.Payment_Method);
+												dataMap.put('Vendor Name',input.Vendor_Name);
+												dataMap.put('Description',input.Description);
+												paid_by_technician = Technician[ID == input.Paid_By].Name;
+												dataMap.put('Paid By',paid_by_technician);
+												dataMap.put('Added Time',zoho.currenttime.toString());
+												dataList.add(dataMap);
+												paramMap.put('json_data',dataList);
+												add_row = invokeurl
+												[
+													url :BASE_URL + workbook_resouce_id
+													type :POST
+													parameters:paramMap
+													connection:"zoho_sheet_connection"
+												];
+												info add_row;
+												reload;
+											}
+										}
+					)
+					}
+				}
+			}
+			hide_fields as "hide fields"
+			{
+				type =  form
+				form = Item
+
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Spare_Part;
+										hide Section2;
+										hide Connections;
+						)
+					}
+				}
+
+			}
+			update_balance_and_receiv as "update balance and received amount"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on user input of Payment.Received_Amount
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_received_amount = 0;
+										for each  payment_entry in input.Payment
+										{
+											total_received_amount = total_received_amount + payment_entry.Received_Amount;
+										}
+										input.Total_Received_Amount = total_received_amount;
+										total_balance_amount = input.Repairing_Charges - input.Discount - total_received_amount;
+										input.Balance_Amount = total_balance_amount;
+						)
+					}
+				}
+
+			}
+			update_balance_and_receiv1 as "update balance and received amount"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on delete row of Payment
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_received_amount = 0;
+										for each  payment_entry in input.Payment
+										{
+											total_received_amount = total_received_amount + payment_entry.Received_Amount;
+										}
+										input.Total_Received_Amount = total_received_amount;
+										total_balance_amount = input.Repairing_Charges - input.Discount - total_received_amount;
+										input.Balance_Amount = total_balance_amount;
+						)
+					}
+				}
+
+			}
+			update_balance_and_receiv2 as "update balance and received amount"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_received_amount = 0;
+										for each  payment_entry in input.Payment
+										{
+											total_received_amount = total_received_amount + payment_entry.Received_Amount;
+										}
+										input.Total_Received_Amount = total_received_amount;
+										total_balance_amount = input.Repairing_Charges - input.Discount - total_received_amount;
+										input.Balance_Amount = total_balance_amount;
+										/* Payment status update
+										Note: 
+											1. Payment status remains "None" before Blueprint Stage = "Repaired" and on "Not Repaired" and "Not Repaired Picked up"
+											2. On Trigger of Blueprint transition "Repaired" on "After" event Payment status changes to "Unpaid". 
+										*/
+										if(input.Balance_Amount <= 0)
+										{
+											input.Payment_Status = "Paid";
+										}
+										else if(input.Balance_Amount > 0 && input.Balance_Amount < input.Repairing_Charges - input.Discount)
+										{
+											input.Payment_Status = "Partially Paid";
+										}
+						)
+					}
+				}
+
+			}
+			validations1 as "validations"
+			{
+				type =  form
+				form = Item
+
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											total_received_amount = 0;
+										for each  payment_entry in input.Payment
+										{
+											total_received_amount = total_received_amount + payment_entry.Received_Amount;
+										}
+										if(Payment.Received_Amount <= 0)
+										{
+											alert "Cannot receive amount 0 or less.";
+											cancel submit;
+										}
+										if(input.Discount == null)
+										{
+											input.Discount = 0;
+										}
+										if(input.Repairing_Charges <= 0)
+										{
+											alert "Repairing Charges should be greater then 0.";
+											cancel submit;
+										}
+										if(input.Discount < 0)
+										{
+											alert "Discount should be 0 or greater.";
+											cancel submit;
+										}
+										if(input.Discount > input.Repairing_Charges)
+										{
+											alert "Discount cannot be greater then Repairing Charges.";
+											cancel submit;
+										}
+										if(total_received_amount > input.Repairing_Charges - input.Discount)
+										{
+											alert "Cannot receive payment more then balance amount";
+											cancel submit;
+										}
+										// if(Blueprint.Current_Stage == "Received")
+										// {
+										// 	alert "Technician is mandatory";
+										// 	cancel submit;
+										// }
+						)
+					}
+				}
+
+			}
+			make_payment as "make payment"
+			{
+				type =  form
+				form = Payment
+
+				record event = on add or edit
+
+				on success
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											item = Item[ID == input.Item];
+										total_received_amount = 0;
+										balance_amount = 0;
+										for each  payment_entry in item.Payment
+										{
+											total_received_amount = total_received_amount + payment_entry.Received_Amount;
+										}
+										item.Total_Received_Amount=total_received_amount;
+										balance_amount = item.Repairing_Charges - item.Discount - total_received_amount;
+										item.Balance_Amount=balance_amount;
+										// Item's Payment Status update
+										if(item.Balance_Amount == 0)
+										{
+											item.Payment_Status="Paid";
+										}
+										else if(item.Balance_Amount > 0 && item.Balance_Amount < item.Repairing_Charges - item.Discount)
+										{
+											item.Payment_Status="Partially Paid";
+										}
+										else if(item.Blueprint.Current_Stage == "Repaired Picked up")
+										{
+											item.Payment_Status="Unpaid";
+										}
+						)
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											item = Item[ID == input.Item];
+										if(!item.Is_Spare_Part_Cost_Accounted)
+										{
+											input.Profit = input.Received_Amount - item.Total_Spare_Parts_Cost;
+											item.Is_Spare_Part_Cost_Accounted=true;
+										}
+										else
+										{
+											input.Profit = input.Received_Amount;
+										}
+						)
+					}
+				}
+
+			}
+			cannot_receive_more_then_ as "cannot receive more then balance amount"
+			{
+				type =  form
+				form = Payment
+
+				record event = on add or edit
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											item = Item[ID == input.Item];
+										balance_amount = item.Balance_Amount;
+										if(input.Received_Amount > balance_amount)
+										{
+											alert "Cannot receive amount more then balance.";
+											cancel submit;
+										}
+										if(input.Received_Amount == 0)
+										{
+											alert "Received Amount cannot be zero";
+											cancel submit;
+										}
+						)
+					}
+				}
+
+			}
+			populate_balance as "populate balance"
+			{
+				type =  form
+				form = Payment
+
+				record event = on add or edit
+
+				on user input of Item
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											item = Item[ID == input.Item];
+										balance_amount = item.Balance_Amount;
+										if(balance_amount != null)
+										{
+											input.Received_Amount = balance_amount;
+										}
+										if(!item.Is_Spare_Part_Cost_Accounted)
+										{
+											input.Profit = input.Received_Amount - item.Total_Spare_Parts_Cost;
+										}
+										else
+										{
+											input.Profit = input.Received_Amount;
+										}
+						)
+					}
+				}
+
+			}
+			filter_items as "filter items"
+			{
+				type =  form
+				form = Payment
+
+				record event = on add or edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											clear Item;
+										item = Item[Payment_Status != "Paid" && Payment_Status != "None"].ID.getAll();
+										input.Item:ui.add(item);
+						)
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											hide Item_id;
+										disable Profit;
+										if(input.Item_id != null)
+										{
+											input.Item = input.Item_id;
+										}
+						)
+					}
+				}
+
+			}
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Item
+					status = inactive
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "MRM : New entry added"
+							message : "Hello,<br/><br/>A new entry added in 'Item' form of 'MRM' application.<br/><br><br>"
+							attachments : template : _default as inline
+						)
+					}
+				}
+			}
+			prevent_delete_if_used as "prevent delete if used"
+			{
+				type =  form
+				form = Customer
+
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											existing_entries_count = Item[Customer == input.ID].count();
+										if(existing_entries_count > 0)
+										{
+											alert "Customer used in transaction cannot be deleted";
+											cancel delete;
+										}
+						)
+					}
+				}
+
+			}
+			prevent_delete_if_used1 as "prevent delete if used"
+			{
+				type =  form
+				form = Technician
+
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											existing_entries_count = Item[Technician == input.ID].count();
+										if(existing_entries_count > 0)
+										{
+											alert "Technician used in transaction cannot be deleted";
+											cancel delete;
+										}
+						)
+					}
+				}
+
+			}
+			prevent_delete_if_used2 as "prevent delete if used"
+			{
+				type =  form
+				form = Spare_Part_Shop
+
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											existing_entries_count = Spare_Parts[Spare_Part_Shop == input.ID].count();
+										if(existing_entries_count > 0)
+										{
+											alert "Spare Part Shop used in transaction cannot be deleted";
+											cancel delete;
+										}
+						)
+					}
+				}
+
+			}
+			delete_related_spare_part1 as "delete related spare part and payment entries"
+			{
+				type =  form
+				form = Item
+
+				record event = on delete
+
+				on validate
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											alert "All Spare Parts and Payment Entries associated with this item are also deleted";
+										item_id = input.ID.toString();
+										thisapp.Utils.delete_related_spare_parts_and_payments(item_id);
+						)
+					}
+				}
+
+			}
+			send_parameter_to_daily_p as "send parameter to daily payments page"
+			{
+				type =  form
+				form = Daily_Payments1
+				button = Search
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						if(Select_Date != null)
+										{
+											url = zoho.appuri + "#Page:Daily_Payments?selected_date=" + input.Select_Date;
+											openUrl(url,"same window");
+										}
+					)
+					}
+				}
+			}
+			update_spare_part_account as "update spare part accounting"
+			{
+				type =  form
+				form = Payment
+
+				record event = on add or edit
+
+				on user input of Received_Amount
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Item != null)
+										{
+											item = Item[ID == input.Item];
+											if(!item.Is_Spare_Part_Cost_Accounted)
+											{
+												input.Profit = input.Received_Amount - item.Total_Spare_Parts_Cost;
+											}
+											else
+											{
+												input.Profit = input.Received_Amount;
+											}
+										}
+						)
+					}
+				}
+
+			}
+			hide_disable as "hide/disable"
+			{
+				type =  form
+				form = Spare_Parts
+
+				record event = on add or edit
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Is_Paid;
+						)
+					}
+				}
+
+			}
+		}
+
+
+
+
+		blueprint
+		{
+    			Repairing_Pipeline as "Repairing Pipeline"
+    			{
+        			type = Blueprint
+        			form = Item
+        			start
+        			{
+            			start stage = "Received"
+            			chart data
+            			{
+                			from port : B
+                			to port   : T3
+                			position  : "0 -153.3739460695313"
+                			path      : [27.849999999999994,-116.53394606953131,27.849999999999994,-106.53394606953131,27.849999999999994,-92.19714268828129,27.520890808105467,-92.19714268828129,27.520890808105467,-77.86033930703127,27.520890808105467,-67.86033930703127]
+            			}
+        			}
+        			stages
+        			{
+           			"Received"
+           			{
+               			chart data
+               			{
+                   			position : "-22.223052470852995 -67.86033930703127"
+               			}
+           			}
+           			"Repairing"
+           			{
+               			chart data
+               			{
+                   			position : "-22.52189535078105 98.06598309374999"
+               			}
+           			}
+           			"Repaired"
+           			{
+               			chart data
+               			{
+                   			position : "-228.9653669843749 237.02028692187497"
+               			}
+           			}
+           			"Not Repaired"
+           			{
+               			chart data
+               			{
+                   			position : "141.00594082812495 233.68019128125002"
+               			}
+           			}
+           			"Repaired Picked up"
+           			{
+               			chart data
+               			{
+                   			position : "-111.32114053749956 480.90957794921854"
+               			}
+           			}
+           			"Not Repaired Picked up"
+           			{
+               			chart data
+               			{
+                   			position : "127.14987552712614 484.1800717304688"
+               			}
+           			}
+           			"Repair Picked Unpaid"
+           			{
+               			chart data
+               			{
+                   			position : "-446.4931174488845 481.2191622236825"
+               			}
+           			}
+           			"Return"
+           			{
+               			chart data
+               			{
+                   			position : "-173.81660590457693 614.6795895431569"
+               			}
+           			}
+        			}
+        			transitions
+        			{
+    				Send_for_Repair as "Send for Repair"
+    				{
+         				type = normal
+         				from stage = "Received"
+         				to stage = "Repairing"
+         				before
+         				{
+         				}
+         				during
+         				{
+            				action = update_fields
+            				workflow status = true
+            				visible fields = [Technician]
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : B3
+             				to port   : T3
+             				path      : [27.520890808105467,-16.252569021086998,27.520890808105467,-6.252569021086998,27.520890808105467,40.9067070363315,28.293054703079754,40.9067070363315,28.293054703079754,88.06598309374999,28.293054703079754,98.06598309374999]
+        				}
+  				}
+    				Repaired as "Repaired"
+    				{
+         				type = normal
+         				from stage = "Repairing"
+         				to stage = "Repaired"
+         				before
+         				{
+            				tooltip message="The Item will be Marked Repaired and Unpaid"
+         				}
+         				after
+         				{
+							actions 
+							{
+								custom deluge script
+								(
+															// input.Payment_Status = "Non";
+								)
+							}
+         				}
+         				chart data
+         				{
+             				from port : B2
+             				to port   : T3
+             				path      : [14.521404685126154,149.67375337969426,14.521404685126154,159.67375337969426,14.521404685126154,193.3470201507846,-179.9039111932094,193.3470201507846,-179.9039111932094,227.02028692187497,-179.9039111932094,237.02028692187497]
+        				}
+  				}
+    				Not_Repaired as "Not Repaired"
+    				{
+         				type = normal
+         				from stage = "Repairing"
+         				to stage = "Not Repaired"
+         				before
+         				{
+            				confirmation before execution
+            				(
+                				message = "यह Item \"Not Repaired\" के रूप में चिह्नित किया जाएगा और Payment Status को \"None\" से बदला नहीं जा सकेगा। इस Item के लिए बाद में भुगतान प्राप्त नहीं किया जा सकेगा। \n\n\nक्या आप वाकई यह प्रक्रिया करना चाहते हैं?"
+                				confirm button text = "Yes"
+                				cancel button text = "No"
+            				)
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : B4
+             				to port   : T3
+             				path      : [42.06470472103336,149.67375337969426,42.06470472103336,159.67375337969426,42.06470472103336,191.67697233047215,203.51083991763028,191.67697233047215,203.51083991763028,223.68019128125002,203.51083991763028,233.68019128125002]
+        				}
+  				}
+    				Repaired_Picked as "Repaired Picked"
+    				{
+         				type = normal
+         				from stage = "Repaired"
+         				to stage = "Repaired Picked up"
+         				before
+         				{
+         				}
+         				during
+         				{
+            				action = open_form
+            				form = Payment
+            				set values
+            				(
+                   				Item_id = input.ID
+            				)
+         				}
+         				after
+         				{
+							actions 
+							{
+								custom deluge script
+								(
+															if(input.Balance_Amount > 0)
+														{
+															input.Payment_Status = "Partially Paid";
+														}
+														else if(input.Balance_Amount == 0)
+														{
+															input.Payment_Status = "Paid";
+														}
+								)
+							}
+         				}
+         				chart data
+         				{
+             				from port : B4
+             				to port   : T3
+             				path      : [-166.71675926282091,288.6280572078192,-166.71675926282091,298.6280572078192,-166.71675926282091,384.7688175785189,-30.672328178951247,384.7688175785189,-30.672328178951247,470.90957794921854,-30.672328178951247,480.90957794921854]
+        				}
+  				}
+    				Not_Repaired_Picked as "Not Repaired Picked"
+    				{
+         				type = normal
+         				from stage = "Not Repaired"
+         				to stage = "Not Repaired Picked up"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : B4
+             				to port   : T3
+             				path      : [221.17913961413205,285.2879615671943,221.17913961413205,295.2879615671943,221.17913961413205,384.7340166488316,221.24213118401428,384.7340166488316,221.24213118401428,474.1800717304688,221.24213118401428,484.1800717304688]
+        				}
+  				}
+    				Repair_Picked_Unpaid as "Repair Picked Unpaid"
+    				{
+         				type = normal
+         				from stage = "Repaired"
+         				to stage = "Repair Picked Unpaid"
+         				before
+         				{
+            				confirmation before execution
+            				(
+                				message = "Are you sure you want to mark this item as unpaid?"
+                				confirm button text = "Yes"
+                				cancel button text = "No"
+            				)
+         				}
+         				after
+         				{
+							actions 
+							{
+								custom deluge script
+								(
+															input.Payment_Status = "Unpaid";
+								)
+							}
+         				}
+         				chart data
+         				{
+             				from port : B3
+             				to port   : T3
+             				path      : [-179.9039111932094,288.6280572078192,-179.9039111932094,298.6280572078192,-179.9039111932094,384.92360971575084,-359.1908321899456,384.92360971575084,-359.1908321899456,471.2191622236825,-359.1908321899456,481.2191622236825]
+        				}
+  				}
+    				Payment as "Payment"
+    				{
+         				type = normal
+         				from stage = "Repair Picked Unpaid"
+         				to stage = "Repaired Picked up"
+         				before
+         				{
+         				}
+         				during
+         				{
+            				action = open_form
+            				form = Payment
+            				set values
+            				(
+                   				Item_id = input.ID
+            				)
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : R1
+             				to port   : L1
+             				path      : [-271.88854693100666,507.0230473666546,-261.88854693100666,507.0230473666546,-191.6048437342531,507.0230473666546,-191.6048437342531,506.7134630921907,-121.32114053749956,506.7134630921907,-111.32114053749956,506.7134630921907]
+        				}
+  				}
+    				Return_workflow as "Return"
+    				{
+         				type = normal
+         				from stage = "Repaired Picked up"
+         				to stage = "Return"
+         				before
+         				{
+            				transition owner
+            				(
+                				permissions = {"Administrator"}
+             				)
+         				}
+         				during
+         				{
+            				action = update_fields
+            				workflow status = true
+            				visible fields = [Returned_Amount]
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : B3
+             				to port   : T5
+             				path      : [-30.672328178951247,532.5173482351628,-30.672328178951247,542.5173482351628,-30.672328178951247,573.5984688891599,-108.81663726825944,573.5984688891599,-108.81663726825944,604.6795895431569,-108.81663726825944,614.6795895431569]
+        				}
+  				}
+    				Not_Repaired1 as "Not Repaired"
+    				{
+         				type = normal
+         				from stage = "Repaired"
+         				to stage = "Not Repaired"
+         				before
+         				{
+            				confirmation before execution
+            				(
+                				message = "यह Item \"Not Repaired\" के रूप में चिह्नित किया जाएगा और Payment Status को \"None\" से बदला नहीं जा सकेगा। इस Item के लिए बाद में भुगतान प्राप्त नहीं किया जा सकेगा।"
+                				confirm button text = "Yes"
+                				cancel button text = "No"
+            				)
+         				}
+         				after
+         				{
+         				}
+         				chart data
+         				{
+             				from port : R1
+             				to port   : L1
+             				path      : [-130.84245540204392,262.8241720648471,-120.84245540204392,262.8241720648471,5.081742713040512,262.8241720648471,5.081742713040512,259.48407642422217,131.00594082812495,259.48407642422217,141.00594082812495,259.48407642422217]
+        				}
+  				}
+        			}
+    			}
+		}
+
+
+		functions
+		{
+			spare_part_paid as "spare part paid"
+			{
+				type =  functions
+				form = Spare_Parts
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Is_Paid = true;
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Repair Manager"
+			{
+				name = "Repair Manager"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Repair Manager Profile\n"
+				ModulePermissions
+				{
+					Item
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Repaired={"View","Edit"}
+							Partially_Paid={"View"}
+							All_Items={"View"}
+							Received={"View"}
+							Paid={"View"}
+							Payment_None={"View"}
+							Repairing={"View","Edit"}
+							Not_Repaired={"View"}
+							Repaired_Picked_up={"View"}
+							Unpaid={"View","Edit"}
+							Not_Repaired_Picked_up={"View"}
+						}
+						FieldPermissions
+						{
+							Connections{visibility:false,readonly:false}
+							Is_Spare_Part_Cost_Accounted{visibility:false,readonly:false}
+							ZC_Record_Type{visibility:false}
+							Discount{visibility:true,readonly:false}
+							Total_Received_Amount{visibility:true,readonly:false}
+							Balance_Amount{visibility:true,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Spare_Part{visibility:true,readonly:false}
+							Returned_Amount{visibility:false,readonly:false}
+							Image{visibility:true,readonly:false}
+							Remark{visibility:true,readonly:false}
+							Total_Spare_Parts_Cost{visibility:true,readonly:false}
+							Components{visibility:true,readonly:false}
+							Payment_Status{visibility:true,readonly:false}
+							Section3{visibility:false,readonly:false}
+							Section2{visibility:false,readonly:false}
+							Item_Auto_Number{visibility:true,readonly:false}
+							Technician{visibility:true,readonly:false}
+							Repairing_Charges{visibility:true,readonly:false}
+							IMEI{visibility:true,readonly:false}
+							Job_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Payment{visibility:true,readonly:false}
+							Model{visibility:true,readonly:false}
+							Problem{visibility:true,readonly:false}
+						}
+					}
+					Payment
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Technician
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Customer
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Expense1
+					{
+						allFieldsVisible= true 
+					}
+					Spare_Parts
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							All_Spare_Parts={"View"}
+						}
+					}
+					Daily_Payments1
+					{
+						allFieldsVisible= true 
+					}
+					Spare_Part_Shop
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Item_BlueprintJob
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		icon
+		{
+			image = "image_1747553355461.png"
+		}
+	}
+
+	connections
+	{
+		zoho_sheet_connection
+		(
+			displayname = "Zoho Sheet Connection"
+			connector = zohosheet
+			permissions = {"all_data_operations","create_record","create_spreadsheet","create_worksheet","get_all_records","get_all_spreadsheets","get_all_worksheets","update_record"}
+		)
+	}
+	web
+	{
+		forms
+		{
+			form Customer
+			{
+				label placement = left
+			}
+			form Daily_Payments1
+			{
+				label placement = labelinplace
+			}
+			form Expense1
+			{
+				label placement = left
+			}
+			form Item
+			{
+				label placement = left
+			}
+			form Payment
+			{
+				label placement = left
+			}
+			form Spare_Part_Shop
+			{
+				label placement = left
+			}
+			form Spare_Parts
+			{
+				label placement = left
+			}
+			form Technician
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report All_Items
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Payment.Received_Amount as "Payment"
+								Total_Received_Amount as "Total Received Amount"
+								Discount
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+								Added_Time as "Added Time"
+								Blueprint.Current_Stage as "Current Stage"
+								Added_User as "Added User"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Added_Time as "Added Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report All_Customers
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Name
+								Phone_Number as "Phone"
+								Address
+								Is_Shopkeeper as "Is Shopkeeper"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone_Number as "Phone"
+								Address
+								Is_Shopkeeper as "Is Shopkeeper"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Technician_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Name
+								Phone_Number as "Phone"
+								Address
+								ID
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Print   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone_Number as "Phone"
+								Address
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report All_Spare_Parts
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Item
+								Added_Time as "Added Time"
+								Is_Paid as "Is Paid"
+								"Paid"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Item
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+    				)
+				)
+			}
+			report Spare_Part_Shop_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Shop_Name as "Shop Name"
+								Phone_Number as "Phone"
+								Address
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Print   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Shop_Name as "Shop Name"
+								Phone_Number as "Phone"
+								Address
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Received
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repairing
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repaired
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Item_Auto_Number as "Item Auto Number"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Item
+								Received_Amount as " Received Amount"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Item
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Not_Repaired
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Item
+								Received_Amount as " Received Amount"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Item
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repaired_Picked_up
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Technician
+								Components
+								Image
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Repairing_Charges as "Repairing Charges"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Technician
+								Components
+								Image
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Repairing_Charges as "Repairing Charges"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Not_Repaired_Picked_up
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Item_Auto_Number as "Item Auto Number"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Item_Auto_Number as "Item Auto Number"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Item
+								Received_Amount as " Received Amount"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Item
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report All_Payments
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Item
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+								Item_id
+								Profit
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Received_Amount as " Received Amount"
+								Item
+								Item_id
+								Profit
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Paid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Item_Auto_Number as "Item Auto Number"
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Item_Auto_Number as "Item Auto Number"
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Unpaid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment.Item as "Payment"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Added_Time as "Added Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Partially_Paid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment.Item as "Payment"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+						datablock2
+						(
+							layout type = -1
+		     				title = "Spare Part"
+		     				related field = Spare_Part
+							fields
+							(
+								Spare_Part_Name as "Spare Part Name"
+								Spare_Part_Shop as "Spare Part Shop"
+								Spare_Part_Cost as "Spare Part Cost"
+								Added_Time as "Added Time"
+							)
+						)
+						datablock3
+						(
+							layout type = -1
+		     				title = "Payment"
+		     				related field = Payment
+							fields
+							(
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Payment_None
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Item_Auto_Number as "Item Auto Number"
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Item_Auto_Number as "Item Auto Number"
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Monthly_Payments
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Item
+								Profit
+								Received_Amount as " Received Amount"
+								Added_Time as "Added Time"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Item_id
+								Item
+								Profit
+								Received_Amount as " Received Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			unused
+			{
+				form  Spare_Part_Shop
+				{
+					icon = "tech-desktop"
+				}
+				form  Technician
+				{
+					icon = "tech-desktop"
+				}
+				form  Spare_Parts
+				{
+					icon = "weather-cloud-moon"
+				}
+				form  Customer
+				{
+					icon = "business-business-contact-89"
+				}
+				systemcomponent
+				{
+					type = localization
+					displayname = "Language Selection"
+					icon = "education-language"
+				}
+				systemcomponent
+				{
+					type = connection
+					displayname = "Connection"
+					icon = "tech-2-connection"
+				}
+				systemcomponent
+				{
+					type = approval
+					approval status = pending
+					displayname = "Pending Tasks"
+					icon = "ui-2-hourglass"
+				}
+				systemcomponent
+				{
+					type = approval
+					approval status = completed
+					displayname = "Completed Tasks"
+					icon = "design-todo"
+				}
+				report All_Payments
+				{
+					icon = "tech-desktop"
+				}
+				report Received
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repairing
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Unpaid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Paid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Partially_Paid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Not_Repaired_Picked_up
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Payment_None
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Not_Repaired
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repaired_Picked_up
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repaired
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				page Technician_Work_Report
+				{
+					icon = "tech-laptop"
+				}
+				form  Daily_Payments1
+				{
+					icon = "tech-desktop"
+				}
+				page Job_Search
+				{
+					icon = "users-2-a-time"
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Dashboard
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page Dashboard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+					page Financial_Report
+					{
+						icon = "business-cheque"
+					}
+					page Daily_Payments
+					{
+						icon = "business-progress"
+					}
+					page TIS
+					{
+						icon = "tech-desktop"
+					}
+					page RM_Dashboard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Items
+				{
+					displayname = "Items"
+					icon = "users-2-child"
+					form  Item
+					{
+						icon = "shopping-cart-simple-remove"
+					}
+					report All_Items
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section Payments
+				{
+					displayname = "Payments"
+					icon = "shopping-credit-card-in"
+					form  Payment
+					{
+						icon = "shopping-receipt"
+					}
+					report Monthly_Payments
+					{
+						icon = "shopping-receipt"
+					}
+				}
+				section Internal_Expense
+				{
+					displayname = "Internal Expense"
+					icon = "business-currency-dollar"
+					form  Expense1
+					{
+						icon = "tech-desktop"
+					}
+					page Expense_Report
+					{
+						icon = "business-currency-dollar"
+					}
+				}
+				section General_Settings
+				{
+					displayname = "General Settings"
+					icon = "ui-1-settings-gear-64"
+					report All_Customers
+					{
+						icon = "tech-desktop"
+					}
+					report Technician_Report
+					{
+						icon = "tech-desktop"
+					}
+					report All_Spare_Parts
+					{
+						icon = "tech-desktop"
+					}
+					report Spare_Part_Shop_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {section,component}
+				}
+			}
+		}
+		customize
+		{
+			new theme = 4
+			font = "poppins"
+			color options
+			{
+				color = "1"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form Customer
+			{
+				label placement = auto
+			}
+			form Daily_Payments1
+			{
+				label placement = auto
+			}
+			form Expense1
+			{
+				label placement = auto
+			}
+			form Item
+			{
+				label placement = auto
+			}
+			form Payment
+			{
+				label placement = auto
+			}
+			form Spare_Part_Shop
+			{
+				label placement = auto
+			}
+			form Spare_Parts
+			{
+				label placement = auto
+			}
+			form Technician
+			{
+				label placement = auto
+			}
+		}
+		reports
+		{
+			report All_Items
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer.Phone_Number as "Phone"
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Discount
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment.Received_Amount as "Payment"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Received
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repairing
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Technician
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Image
+								Components
+								Remark
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repaired
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Job_ID as "Job ID"
+								Item_Auto_Number as "Item Auto Number"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Not_Repaired
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Repaired_Picked_up
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Technician
+								Components
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Repairing_Charges as "Repairing Charges"
+								Total_Received_Amount as "Total Received Amount"
+								Discount
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Not_Repaired_Picked_up
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Item_Auto_Number as "Item Auto Number"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Discount
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Paid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Total_Received_Amount as "Total Received Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Item_Auto_Number as "Item Auto Number"
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Image
+								Remark
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+								Payment_Status as "Payment Status"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Unpaid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Technician
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Components
+								Remark
+								Repairing_Charges as "Repairing Charges"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report Partially_Paid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Technician
+								Components
+								Remark
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Repairing_Charges as "Repairing Charges"
+								Discount
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			unused
+			{
+				form  Spare_Part_Shop
+				{
+					icon = "tech-desktop"
+				}
+				form  Technician
+				{
+					icon = "tech-desktop"
+				}
+				form  Spare_Parts
+				{
+					icon = "weather-cloud-moon"
+				}
+				form  Customer
+				{
+					icon = "business-business-contact-89"
+				}
+				systemcomponent
+				{
+					type = localization
+					displayname = "Language Selection"
+					icon = "education-language"
+				}
+				systemcomponent
+				{
+					type = connection
+					displayname = "Connection"
+					icon = "tech-2-connection"
+				}
+				systemcomponent
+				{
+					type = approval
+					approval status = pending
+					displayname = "Pending Tasks"
+					icon = "ui-2-hourglass"
+				}
+				systemcomponent
+				{
+					type = approval
+					approval status = completed
+					displayname = "Completed Tasks"
+					icon = "design-todo"
+				}
+				report All_Payments
+				{
+					icon = "tech-desktop"
+				}
+				report Received
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repairing
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Unpaid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Paid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Partially_Paid
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Not_Repaired_Picked_up
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Payment_None
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Not_Repaired
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repaired_Picked_up
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				report Repaired
+				{
+					icon = "shopping-cart-simple-remove"
+				}
+				page Technician_Work_Report
+				{
+					icon = "tech-laptop"
+				}
+				form  Daily_Payments1
+				{
+					icon = "tech-desktop"
+				}
+				report Technician_Report
+				{
+					icon = "tech-desktop"
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Dashboard
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page Dashboard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+					page Financial_Report
+					{
+						icon = "business-cheque"
+					}
+					page Daily_Payments
+					{
+						icon = "business-progress"
+					}
+					page Job_Search
+					{
+						icon = "users-2-a-time"
+					}
+					page TIS
+					{
+						icon = "tech-desktop"
+					}
+					page RM_Dashboard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Items
+				{
+					displayname = "Items"
+					icon = "users-2-child"
+					form  Item
+					{
+						icon = "shopping-cart-simple-remove"
+					}
+					report All_Items
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section Payments
+				{
+					displayname = "Payments"
+					icon = "shopping-credit-card-in"
+					form  Payment
+					{
+						icon = "shopping-receipt"
+					}
+					report Monthly_Payments
+					{
+						icon = "shopping-receipt"
+					}
+				}
+				section Internal_Expense
+				{
+					displayname = "Internal Expense"
+					icon = "business-currency-dollar"
+					form  Expense1
+					{
+						icon = "tech-desktop"
+					}
+					page Expense_Report
+					{
+						icon = "business-currency-dollar"
+					}
+				}
+				section General_Settings
+				{
+					displayname = "General Settings"
+					icon = "ui-1-settings-gear-64"
+					report All_Customers
+					{
+						icon = "tech-desktop"
+					}
+					report All_Spare_Parts
+					{
+						icon = "tech-desktop"
+					}
+					report Spare_Part_Shop_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {section,component}
+				}
+			}
+		}
+		customize
+		{
+			layout = onecolumn
+			font = "poppins"
+			style = "1"
+			color options
+			{
+				name = "custom_color_2"
+				brand color = "#eaccf9"
+				type = "custom"
+				dark mode color = "#eaccf9"
+			}
+			logo
+			{
+				preference = "company_logo"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form Customer
+			{
+				label placement = auto
+			}
+			form Daily_Payments1
+			{
+				label placement = auto
+			}
+			form Expense1
+			{
+				label placement = auto
+			}
+			form Item
+			{
+				label placement = auto
+			}
+			form Payment
+			{
+				label placement = auto
+			}
+			form Spare_Part_Shop
+			{
+				label placement = auto
+			}
+			form Spare_Parts
+			{
+				label placement = auto
+			}
+			form Technician
+			{
+				label placement = auto
+			}
+		}
+		reports
+		{
+			report Unpaid
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				display type = auto
+							layout type = 35
+							fields
+							(
+								Job_ID as "Job ID"
+								Model
+								Customer
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on tap
+						(
+							View Record   	   
+    					)
+						on long press
+						(
+							Edit   	   
+							Delete   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Job_ID as "Job ID"
+								Customer
+								Model
+								IMEI
+								Problem
+								Repairing_Charges as "Repairing Charges"
+								Technician
+								Components
+								Spare_Part.Spare_Part_Name as "Spare Part"
+								Total_Spare_Parts_Cost as "Total Spare Parts Cost"
+								Discount
+								Total_Received_Amount as "Total Received Amount"
+								Balance_Amount as "Balance Amount"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				menu color = "#000000"
+				header color = "#f5f5f5"
+				name = "custom_color"
+				brand color = "#ef8216"
+				type = "custom"
+				sub menu color = "#ef8216"
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"en"}}
+}
+}

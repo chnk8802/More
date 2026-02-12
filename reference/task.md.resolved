@@ -1,0 +1,43 @@
+# MRM Application Development Tasks
+
+- [x] **Project Initialization**
+    - [x] Initialize Git repository
+    - [x] Setup Backend (Node.js/Express) structure
+    - [x] Setup Frontend (React/Vite) structure
+    - [x] Configure Tailwind CSS
+- [x] **Database Design (Schema)**
+    - [x] Define [Customer](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Customers.jsx#4-120) Schema
+    - [x] Define [Technician](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Technicians.jsx#4-93) Schema
+    - [x] Define `SparePartShop` Schema
+    - [x] Define `SparePart` Schema
+    - [x] Define `Item` (Job) Schema
+    - [x] Define [Payment](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Payments.jsx#4-116) Schema
+    - [x] Define [Expense](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Expenses.jsx#6-100) Schema
+- [x] **Backend Refactoring (ESM & Modernization)**
+    - [x] Enable ES Modules (`type: "module"`)
+    - [x] Refactor Config & Server Entry to ESM
+    - [x] Refactor Models to ESM
+    - [x] Refactor Controllers & Routes to ESM
+    - [x] **Feature**: Implement Job + Spare Part Transaction Logic
+- [x] **Authentication & Multi-tenancy**
+    - [x] Define `Organization` Schema
+    - [x] Define [User](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/services/api.js#64-65) Schema (Roles: Superadmin, Admin, Manager, Technician)
+    - [x] Implement Auth Middleware (JWT, Role Checks)
+    - [x] **Migration**: Add `organization` field to all existing models
+    - [x] **Migration**: Convert [Technician](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Technicians.jsx#4-93) model to [User](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/services/api.js#64-65) (role=technician)
+    - [x] Implement Org & User CRUD APIs
+- [/] **Frontend Redesign (Premium Glassmorphism)**
+    - [x] Setup Modern CSS Variables & Glassmorphism Utils
+    - [x] **New**: Login & Sign Up Pages
+    - [x] **New**: Superadmin Dashboard (Org Management)
+    - [x] **New**: Admin User Management
+    - [x] Redesign Layout (Sidebar/Header)
+    - [x] Redesign Dashboard (Glass Cards)
+    - [ ] **Polish**: Enhance visual aesthetics (depth, gradients, motion)
+    - [ ] Redesign Job Module (List & Form)
+    - [ ] Redesign Other Modules (Customers, Techs, Payments)
+- [ ] **Integration & Verification**
+    - [ ] Verify Backend API with new ESM build
+    - [ ] Test Transaction Logic
+    - [ ] Test Multi-tenancy Isolation
+    - [ ] Verify Frontend UI Responsiveness

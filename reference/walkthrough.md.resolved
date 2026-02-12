@@ -1,0 +1,51 @@
+# Walkthrough - Mobile Repair Management System
+
+## Overview
+This document tracks the development progress of the Mobile Repair Management (MRM) system.
+
+## Recent Changes (Backend Refactoring & Multi-tenancy)
+We have successfully refactored the backend to use ES Modules and implemented a robust multi-tenancy architecture.
+
+### Key Class/Function/Component Changes
+- **ES Modules**: Converted the entire server codebase to use `import`/`export` syntax.
+- **Authentication**:
+    - Implemented JWT-based authentication ([authMiddleware.js](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/middleware/authMiddleware.js)).
+    - Added [authController.js](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/controllers/authController.js) for Login and Organization Registration.
+- **Multi-tenancy**:
+    - Created `Organization` and [User](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/controllers/userController.js#3-14) models.
+    - Updated all business models ([Customer](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Customers.jsx#4-218), `Item`, [Payment](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Payments.jsx#4-204), [Expense](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Expenses.jsx#4-234), etc.) to include an `organization` field.
+    - Updated all Controllers to automatically filter data by the logged-in user's organization.
+- **User Management**:
+    - Migrated [Technician](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Technicians.jsx#4-190) management to the [User](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/controllers/userController.js#3-14) model (Role: 'Technician').
+    - Added [userController.js](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/controllers/userController.js) for Admin management of users.
+- **Transactions**:
+    - Implemented MongoDB Transaction support in [jobController.js](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/server/controllers/jobController.js) for atomic operations (Job creation + Spare Part creation).
+
+### Verification Results
+#### automated_tests
+- [x] Server Startup: Verified `node index.js` starts successfully.
+- [x] Database Connection: Verified successful connection to MongoDB.
+
+#### manual_verification
+- [x] Verified [package.json](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/package.json) configuration for ESM (`"type": "module"`).
+- [x] Verified all route files exist and are imported correctly.
+
+## Recent Changes (User Management)
+- **Frontend**: Created [Users.jsx](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/pages/Users.jsx) page for user management with CRUD operations.
+- **Navigation**: Added "User Management" to sidebar navigation in [Layout.jsx](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/components/Layout.jsx).
+- **Routes**: Added `/users` route to [App.jsx](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/src/App.jsx).
+- **API Integration**: Verified user management APIs (getUsers, createUser, updateUser, deleteUser) are working.
+
+## Verification Results
+### automated_tests
+- [x] Server Startup: Verified `node index.js` starts successfully.
+- [x] Database Connection: Verified successful connection to MongoDB.
+- [x] User Registration: Verified registration API creates new organizations and users.
+- [x] User Login: Verified login API authenticates users and returns JWT token.
+- [x] User Management: Verified user management APIs create and retrieve users.
+
+### manual_verification
+- [x] Verified [package.json](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/client/package.json) configuration for ESM (`"type": "module"`).
+- [x] Verified all route files exist and are imported correctly.
+- [x] Verified login and registration pages are accessible.
+- [x] Verified user management page is accessible and functional.

@@ -1,0 +1,103 @@
+# Implementation Plan - MRM Application
+
+This plan outlines the development of the Mobile Repair Management (MRM) application using the MERN stack (MongoDB, Express, React, Node.js), migrating from the provided Zoho Creator design ([MRM.ds](file:///c:/Users/HP/OneDrive/Desktop/py/mrm/MRM.ds)).
+
+## User Review Required
+> [!NOTE]
+> The original design uses Zoho's "Blueprint" for stage management. We will implement this as a state machine in the `Item` model and use a Kanban-style or Status-filtered list view in the frontend.
+
+## Proposed Changes
+
+### Database Schema (MongoDB)
+We will map the Zoho Forms to Mongoose Schemas.
+
+#### [NEW] `server/models`
+- `Customer.js`: Name, Contact, Address, Is_Shopkeeper.
+- `Technician.js`: Name, Contact, Address.
+- `SparePartShop.js`: Shop Name, Contact, Address.
+- `SparePart.js`: Name, Shop (Ref), Cost, Is_Paid, Linked Item (Ref).
+- `Item.js`:
+    - Job ID (Auto-generated/Custom)
+    - Customer (Ref)
+    - Device Details (Model, IMEI, Problem, Image)
+    - Repair Details (Technician Ref, Components, Remark)
+    - Financials (Repair Charge, Discount, Total Spare Cost, Total Received, Balance)
+    - **Status Enum**: `['Received', 'Repairing', 'Repaired', 'Not Repaired', 'Repaired Picked up', 'Not Repaired Picked up', 'Repair Picked Unpaid', 'Return']`
+    - Payment Status (Unpaid, Partially Paid, Paid)
+- `Payment.js`: Item (Ref), Amount, Date, Profit Calculation.
+- `Expense.js`: Category, Name, Amount, Payment Method, Paid By (Technician Ref).
+
+### Backend (Node/Express)
+- **Structure**: MVC pattern.
+- **Key Logic**:
+    - **Daily Payments Aggregation**: Replicate the logic from `Daily_Payments` page to group payments by Date -> Technician -> Item.
+    - **Dashboard Counts**: efficiently count Items by Status and Payment Status for the dashboard widgets.
+- **Routes**:
+    - `/api/customers`
+    - `/api/technicians`
+    - `/api/parts`
+    - `/api/jobs` (Items)
+    - `/api/payments`
+    - `/api/expenses`
+    - `/api/dashboard` (Aggregated stats)
+
+### Frontend (React + Vite + Tailwind)
+- **Design System**: Modern, clean UI with a sidebar navigation.
+- **Key Modules**:
+    - **Dashboard**: Cards showing counts of jobs in different stages (Received, Repairing, Repaired, etc.) and financial summaries.
+    - **Job Management**:
+        - List View: Filterable by status.
+        - Create/Edit Form: Complex form handling Customer selection, device details, and dynamic spare part addition.
+        - Detail View: Show full job history and allow status transitions.
+    - **Masters**: Simple CRUD for Customers, Technicians, Shops.
+
+## Refactoring & Modernization Plan
+
+### Backend Modernization
+- **ES Modules**: Convert `server` to use ES Modules (`import`/`export`).
+    - Update `package.json` to `type: "module"`.
+    - Refactor `index.js`, `db.js`, Models, and Controllers.
+- **Transactions**: Implement MongoDB Transactions for data integrity.
+    - **Use Case**: Creating a Job that also creates new Spare Part entries.
+
+### Authentication & Multi-tenancy (New)
+- **Models**:
+    - `Organization`: Name, Address, SubscriptionPlan, CreatedAt.
+    - `User`: Name, Email, Password (Hashed), Role (enum: 'Superadmin', 'Admin', 'Manager', 'Technician'), Organization (Ref).
+- **Middleware**:
+    - `authMiddleware`: Verify JWT, attach `req.user`.
+    - `roleMiddleware`: Check if `req.user.role` matches required roles.
+- **Data Isolation**:
+    - All business models (`Customer`, `Item`, `SparePart`, etc.) will get an `organization` field.
+    - **Crucial**: All `find()` queries must automatically filter by `req.user.organization`.
+- **Technician Migration**:
+    - The existing `Technician` model will be deprecated.
+    - Technicians will now be `Users` with `role: 'Technician'`.
+
+### Frontend Redesign (Glassmorphism)
+- **Style**: Modern, clean, "Glassmorphism" aesthetic.
+    - Translucent backgrounds with blur effects (`backdrop-filter: blur()`).
+    - Soft gradients and shadows.
+    - Rounded corners and border overlays.
+- **Auth Flow**:
+    - Login Page with JWT storage in localStorage/cookies.
+    - PrivateRoute component to protect views.
+- **Implementation**:
+    - Update `index.css` with CSS variables for glass effects.
+    - Refactor `Layout.jsx` for a modern sidebar/header.
+    - Update `Dashboard.jsx`, `JobForm.jsx`, and lists to use glass cards.
+
+## Verification Plan
+
+### Automated Tests
+- Backend: Unit tests for Model validation and complex logic (e.g., updating Job balance when Payment is added).
+
+### Manual Verification
+- **Workflow Test**:
+    1. Create a Customer.
+    2. Create a Job (Status: Received).
+    3. Assign Technician -> Move to Repairing.
+    4. Add Spare Parts -> Verify Cost calculation.
+    5. Move to Repaired.
+    6. Add Payment -> Verify Balance update.
+    7. Deliver (Picked Up).
